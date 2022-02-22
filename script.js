@@ -1,15 +1,15 @@
 // special characters
-character = ["!", "#", "$", "%", "&", "*", "-", "=", "@", "<", ">", "?", "/", "~", "+" ];
+var character = ["!", "#", "$", "%", "&", "*", "-", "=", "@", "<", ">", "?", "/", "~", "+" ];
 // numeric characters
-number = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+var number = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 // alphabetical characters
-alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" ];
+var alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" ];
 // convert letters to uppercase
 var toUpper = function(y) {
   return y.toUpperCase();
 };
 
-alpha2 = alpha.map(toUpper);
+var alpha2 = alpha.map(toUpper);
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -19,15 +19,18 @@ var generatePassword = function() {
     // validates user input for too large or small selections
     if (enter < 8 || enter > 128) {
       enter = parseInt(alert("You must choose between 8 and 128"));
-      generatePassword();
+      return generatePassword();
     } 
     // require an entry 
     else if (!enter) {
       alert("Please enter a value between 8 and 128")
+      return generatePassword();
     }
     // continues if input is valid 
     else {
-      console.log("Password length: " + enter);
+      var passLength = enter;
+      
+      console.log("Password length: " + passLength);
 
       confirmNumber = confirm("Will your password contain numbers?")
       confirmCharacter = confirm("Will your password contain special characters?")
@@ -87,7 +90,9 @@ var generatePassword = function() {
     else if (confirmLowercase) {
       choices = alpha
     };
+    console.log(choices);
 }
+
 
 // Write password to the #password input
 function writePassword() {

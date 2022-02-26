@@ -11,35 +11,37 @@ var toUpper = function(y) {
 
 var alpha2 = alpha.map(toUpper);
 
+var choices = [];
+var password = "";
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 var generatePassword = function() {
-  enter = parseInt(prompt("Select how long you would like your password. Choose between 8 and 128"));
+
+  const pwLength = parseInt(prompt("Select how long you would like your password. Choose between 8 and 128"));
     // validates user input for too large or small selections
-    if (enter < 8 || enter > 128) {
-      enter = parseInt(alert("You must choose between 8 and 128"));
+    if (pwLength < 8 || pwLength > 128) {
+      pwLength = parseInt(alert("You must choose between 8 and 128"));
       return generatePassword();
     } 
     // require an entry 
-    else if (!enter) {
+    else if (!pwLength) {
       alert("Please enter a value between 8 and 128")
       return generatePassword();
     }
     // continues if input is valid 
     else {
-      var passLength = enter;
-      
-      console.log("Password length: " + passLength);
+      console.log("Password length: " + pwLength);
 
-      confirmNumber = confirm("Will your password contain numbers?")
-      confirmCharacter = confirm("Will your password contain special characters?")
-      confirmUppercase = confirm("Will your password contain uppercase letters?")
-      confirmLowercase = confirm("Will your password contain lowercase letters?")
+      confirmNumber = confirm("Click OK to confirm including numbers?")
+      confirmCharacter = confirm("Click OK to confirm including special characters?")
+      confirmUppercase = confirm("Click OK to confirm including uppercase letters?")
+      confirmLowercase = confirm("Click OK to confirm including lowercase letters?")
     };
 // if 4 negative inputs 
     if (!confirmNumber && !confirmCharacter && !confirmUppercase && !confirmLowercase) {
-      choices = alert("Please choose a criteria!");
+      choices = alert("You need to choose criteria!");
     }
   // else if for 4 positive inputs
     else if (confirmNumber && confirmCharacter && confirmUppercase && confirmLowercase){
@@ -92,6 +94,14 @@ var generatePassword = function() {
     };
     console.log(choices);
 }
+
+debugger;
+// randomly pick characters from choices array to fill password length
+    for (var i = 1; i < pwLength.value; i++) {
+    var randIndex = Math.floor(Math.random() * choices.length);
+    pwArray.push(choices[randIndex])
+  }
+  password = pwArray.join(""); 
 
 
 // Write password to the #password input

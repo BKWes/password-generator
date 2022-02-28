@@ -49,10 +49,10 @@ var generatePassword = function() {
         confirmLowercase = confirm("Click OK to confirm including lowercase letters?");
       }
 
-    var numericCharacters = [];
-    var specialCharacters = [];
-    var lowerCase = [];
-    var upperCase = [];
+    var numericCharacters = [,];
+    var specialCharacters = [,];
+    var lowerCase = [,];
+    var upperCase = [,];
     var chosenPassword = '';
 // debugger;
     for (var i = 0; i < pwLength; i++) {
@@ -61,25 +61,36 @@ var generatePassword = function() {
       debugger;
       if (confirmNumber) {
         // numericCharacters = number + number[Math.floor(Math.random() * number.length)];
+        for (var i = 0; i < number.length; i++) {
         numericCharacters += number[Math.floor(Math.random() * number.length)];
-        console.log(numericCharacters);
+        }
+        console.log(numericCharacters); // only returning a single value
       }
       if (confirmCharacter) {
+        for (var i = 0; i < character.length; i++) {
         specialCharacters += character[Math.floor(Math.random() * character.length)];
-        console.log(specialCharacters);
+        }
+        console.log(specialCharacters); // only returning a single value
       }
       if (confirmUppercase) {
+        for (var i = 0; i < alpha2.length; i++) {
         upperCase += alpha2[Math.floor(Math.random() * alpha2.length)];
-        console.log(upperCase);
+        }
+        console.log(upperCase); // only returning a single value
       }
       if (confirmLowercase) {
+        for (var i = 0; i < alpha.length; i++) {
         lowerCase += alpha[Math.floor(Math.random() * alpha.length)];
-        console.log(lowerCase);
+        }
+        console.log(lowerCase); // only returning a single value
       }
 
       var pwCharacters = numericCharacters + specialCharacters + upperCase + lowerCase;
 
+      for (var i = 0; i < pwLength; i++) {
+
       chosenPassword = chosenPassword + pwCharacters[Math.floor(Math.random() * pwCharacters.length)];
+      }
       console.log(chosenPassword);
 
       return chosenPassword;
